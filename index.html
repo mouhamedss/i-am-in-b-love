@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسالة خاصة 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+}
+
+/* القلوب */
+.heart {
+    position: absolute;
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* الصندوق */
+.container {
+    background: rgba(255,255,255,0.15);
+    padding: 40px;
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    width: 380px;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+}
+
+.buttons {
+    margin-top: 25px;
+    position: relative;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: white;
+    color: #ff4d6d;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background: #ffccd5;
+    color: #333;
+    position: absolute;
+}
+
+#successMessage {
+    margin-top: 20px;
+    font-size: 20px;
+    display: none;
+    animation: pop 0.6s ease forwards;
+}
+
+@keyframes pop {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>عندي سؤال مهم 💌</h1>
+    <p>هل تقبلين أن نبدأ قصة جميلة معًا؟ 💖</p>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="accepted()">نعم 💕</button>
+        <button id="noBtn">لا 🙈</button>
+    </div>
+
+    <p id="successMessage">اختيار رائع 💖 أرسلي لي رسالة هناك 💌</p>
+</div>
+
+<script>
+
+/* قلوب متحركة */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+setInterval(createHeart, 400);
+
+/* زر لا يهرب */
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+/* عند القبول */
+function accepted() {
+    document.getElementById("successMessage").style.display = "block";
+
+    setTimeout(function(){
+        window.open("https://www.instagram.com/mouhamediam/", "_blank");
+    }, 2000);
+}
+
+</script>
+
+</body>
+</html>
